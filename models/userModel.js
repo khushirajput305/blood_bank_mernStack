@@ -47,7 +47,7 @@ hospitalName:{
   },
   address: {
     type: String,
-    require: [true, "address is required"],
+   require: [true, "address is required"],
   },
   phone: {
     type: String,
