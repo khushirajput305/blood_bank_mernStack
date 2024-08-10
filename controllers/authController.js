@@ -1,6 +1,6 @@
 const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const JWT = require("jsonwebtoken");
 //register
 const registerController = async (req, res) => {
   try {
@@ -57,7 +57,7 @@ const loginController = async (req, res) => {
         message: "invalid credentials",
       });
     }
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+    const token = JWT.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
     return res.status(200).send({
@@ -76,4 +76,23 @@ const loginController = async (req, res) => {
   }
 };
 
-module.exports = { registerController, loginController };
+//current user
+const currentUserController=async(req,res)=>{
+  try {
+    const user = await userModel.findOne({_id:req.body.userId})
+    return res.status(200).send({
+      success: true,
+      message: "User Fetched Successfully",
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "unable to get current user",
+      error
+    });
+  }
+}
+
+module.exports = { registerController, loginController,currentUserController };

@@ -16,8 +16,8 @@ app.use(morgan("dev"));
 
 app.use("/api/v1/test", require("./routes/testRoutes"));
 app.use("/api/v1/auth",require("./routes/authRoutes"));
-const PORT = process.env.PORT || 8000;
-
+app.use("/api/v1/inventory",require("./routes/inventoryRoutes"));
+const PORT = process.env.PORT || 8000
 app.listen(PORT, () => {
   console.log(`server is running in ${process.env.DEV_MODE} Mode on port ${process.env.PORT}`.bgBlue.white);
 });
