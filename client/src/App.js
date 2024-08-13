@@ -1,11 +1,18 @@
-import React from 'react'
-
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 const App = () => {
   return (
-    <div>
-      <h1>BLOOD BANK APP</h1>
-    </div>
-  )
-}
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </>
+  );
+};
 
-export default App
+export default App;
