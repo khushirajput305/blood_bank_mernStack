@@ -16,6 +16,63 @@ const Form = ({ submitBtn, formTitle, formType }) => {
       <form>
         <h1 className="text-center">{formTitle}</h1>
         <hr />
+        <div className="d-flex mb-3">
+          <div className="form-check ms-2">
+            <input
+              type="radio"
+              className="form-check-input"
+              name="role"
+              id="donarRadio"
+              value={"donar"}
+              onChange={(e) => setRole(e.target.value)}
+              defaultChecked
+            />
+            <label htmlFor="donarRadio" className="form-check-label">
+              Donar
+            </label>
+          </div>
+          <div className="form-check ms-2">
+            <input
+              type="radio"
+              className="form-check-input"
+              name="role"
+              id="adminRadio"
+              value={"admin"}
+              onChange={(e) => setRole(e.target.value)}
+            />
+            <label htmlFor="adminRadio" className="form-check-label">
+              Admin
+            </label>
+          </div>
+          <div className="form-check ms-2">
+            <input
+              type="radio"
+              className="form-check-input"
+              name="role"
+              id="hospitalRadio"
+              value={"hospital"}
+              onChange={(e) => setRole(e.target.value)}
+              defaultChecked
+            />
+            <label htmlFor="hospitalRadio" className="form-check-label">
+              Hospital
+            </label>
+          </div>
+          <div className="form-check ms-2">
+            <input
+              type="radio"
+              className="form-check-input"
+              name="role"
+              id="organisationRadio"
+              value={"organisation"}
+              onChange={(e) => setRole(e.target.value)}
+              defaultChecked
+            />
+            <label htmlFor="organisationRadio" className="form-check-label">
+              Organisation
+            </label>
+          </div>
+        </div>
         {formType === "login" ? (
           <>
             <InputType
@@ -34,14 +91,41 @@ const Form = ({ submitBtn, formTitle, formType }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-             <div className="d-flex">
-          <button className="btn btn-primary" type="submit">
-            {submitBtn}
-          </button>
-        </div>
           </>
         ) : formType === "register" ? (
           <>
+            {(role === "admin" || role === "donar") && (
+              <InputType
+                labelText={"Name"}
+                labelFor={"forName"}
+                inputType={"name"}
+                name={"name"}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            )}
+
+            {role === "organisation" && (
+              <InputType
+                labelText={"Organisation Name"}
+                labelFor={"fororganisationName"}
+                inputType={"text"}
+                name={"organisationName"}
+                value={organisationName}
+                onChange={(e) => setOrganisationName(e.target.value)}
+              />
+            )}
+
+            {role === "hospital" && (
+              <InputType
+                labelText={"Hospital Name"}
+                labelFor={"forHospitalName"}
+                inputType={"text"}
+                name={"hospitalName"}
+                value={hospitalName}
+                onChange={(e) => setHospitalName(e.target.value)}
+              />
+            )}
             <InputType
               labelText={"email"}
               labelFor={"forEmail"}
@@ -59,63 +143,37 @@ const Form = ({ submitBtn, formTitle, formType }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <InputType
-              labelText={"Name"}
-              labelFor={"forName"}
-              inputType={"name"}
-              name={"name"}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-
-            <InputType
-              labelText={"Organisation Name"}
-              labelFor={"forOrganisationName"}
-              inputType={"organisationName"}
-              name={"organisationName"}
-              value={organisationName}
-              onChange={(e) => setOrganisationName(e.target.value)}
-            />
-            <InputType
-              labelText={"Hospital Name"}
-              labelFor={"forHospitalName"}
-              inputType={"hospitalName"}
-              name={"hospitalName"}
-              value={hospitalName}
-              onChange={(e) => setHospitalName(e.target.value)}
-            />
-            <InputType
               labelText={"website"}
               labelFor={"forWebsite"}
-              inputType={"website"}
+              inputType={"text"}
               name={"website"}
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
             />
             <InputType
-              labelText={"address"}
-              labelFor={"foraddress"}
-              inputType={"address"}
+              labelText={"Address"}
+              labelFor={"forAddress"}
+              inputType={"text"}
               name={"address"}
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
             <InputType
-              labelText={"phone"}
-              labelFor={"forphone"}
-              inputType={"phone"}
+              labelText={"Phone"}
+              labelFor={"forPhone"}
+              inputType={"text"}
               name={"phone"}
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
-             <div className="d-flex">
+          </>
+        ) : null}
+
+        <div className="d-flex">
           <button className="btn btn-primary" type="submit">
             {submitBtn}
           </button>
         </div>
-          </>
-        ) : null}
-
-       
       </form>
     </div>
   );
