@@ -9,7 +9,7 @@ const InputType = ({labelText,
 }) => {
   return (
     <div>
-       <div className="mb-3">
+       <div className="mb-1">
               <label htmlFor={labelFor} className="form-label">
                 {labelText}
               </label>
