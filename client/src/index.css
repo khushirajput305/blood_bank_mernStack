@@ -5,9 +5,13 @@
 }
 
 .form-banner img{
-height: 120%;
+height: 93%;
 width: 100%;
 }
+.form-banner1 img{
+  height: 100%;
+  width: 100%;
+  }
 
 .form-container{
   display: flex;
