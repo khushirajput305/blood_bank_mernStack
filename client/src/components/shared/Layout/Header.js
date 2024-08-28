@@ -1,7 +1,7 @@
 import React from "react";
 import { BiDonateBlood, BiUserCircle } from "react-icons/bi";
 import { useSelector } from "react-redux";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
@@ -23,11 +23,18 @@ const Header = () => {
             <li className="nav-item mx-3">
               <p className="nav-link">
                 <BiUserCircle />
-                Welcome {user?.name} !
+                Welcome{" "}
+                {user?.name ||
+                  user?.hospitalName ||
+                  user?.organisationName}{" "}
+                &nbsp;
+                <span className="badge-bg-secondary">{user?.role}</span>
               </p>
             </li>
             <li className="nav-item ">
-              <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+              <button className="btn btn-danger" onClick={handleLogout}>
+                Logout
+              </button>
             </li>
           </ul>
         </div>

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../../services/API";
-import { toast } from "react-toastify";
+
 
 //login
 export const userLogin = createAsyncThunk(
@@ -11,7 +11,7 @@ export const userLogin = createAsyncThunk(
       //store token
       if (data.success) {
         localStorage.setItem("token", data.token);
-        toast.success(data.message);
+        alert("User Login Successfully");
         window.location.replace("/");
       }
       return data;
@@ -55,9 +55,9 @@ export const userRegister = createAsyncThunk(
         website,
       });
       if (data?.success) {
-         alert("User Registerd Successfully");
+        alert("User Registerd Successfully");
         window.location.replace("/login");
-         //toast.success(data.message);
+        //toast.success(data.message);
       }
     } catch (error) {
       console.log(error);
@@ -72,11 +72,11 @@ export const userRegister = createAsyncThunk(
 
 //current user
 export const getCurrentUser = createAsyncThunk(
-  'auth/getCurrentUser',
-  async({rejectWithValue})=>{
+  "auth/getCurrentUser",
+  async ({ rejectWithValue }) => {
     try {
-      const res = await API.get('/auth/current-user')
-      if(res?.data){
+      const res = await API.get("/auth/current-user");
+      if (res?.data) {
         return res?.data;
       }
     } catch (error) {
@@ -85,7 +85,7 @@ export const getCurrentUser = createAsyncThunk(
         return rejectWithValue(error.response.data.message);
       } else {
         return rejectWithValue(error.message);
-      } 
+      }
     }
   }
-)
+);
