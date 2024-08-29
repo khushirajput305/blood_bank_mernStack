@@ -1,39 +1,66 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import InputType from "./../Form/InputType";
-
+import API from "./../../../services/API";
 
 const Modal = () => {
   const [inventoryType, setInventoryType] = useState("in");
   const [bloodGroup, setBloodGroup] = useState("");
   const [quantity, setQuantity] = useState(0);
-  const [donarEmail, setEmail] = useState("");
+  const [email, setEmail] = useState("");
+  const { user } = useSelector((state) => state.auth);
+  // handle modal data
+  const handleModalSubmit = async () => {
+    try {
+      if (!bloodGroup || !quantity) {
+        return alert("Please Provide All Fields");
+      }
+      const { data } = await API.post("/inventory/create-inventory", {
+        email,
+        organisation: user?._id,
+        inventoryType,
+        bloodGroup,
+        quantity,
+      });
+      if (data?.success) {
+        alert("New Record Created");
+      //  window.location.reload();
+      }
+    } catch (error) {
+      alert(error.response.data.message);
+      console.log(error);
+     // window.location.reload();
+    }
+  };
+
   return (
     <>
+      {/* Modal */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
-        tabindex="-1"
+        tabIndex={-1}
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                Modal title
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="staticBackdropLabel">
+                Manage Blood Record
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              ></button>
+              />
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <div className="d-flex mb-3">
-                Blood Type :&nbsp;
+                Blood Type: &nbsp;
                 <div className="form-check ms-3">
                   <input
                     type="radio"
@@ -43,7 +70,7 @@ const Modal = () => {
                     onChange={(e) => setInventoryType(e.target.value)}
                     className="form-check-input"
                   />
-                  <label htmlFor="in" className="radio-label">
+                  <label htmlFor="in" className="form-check-label">
                     IN
                   </label>
                 </div>
@@ -55,7 +82,7 @@ const Modal = () => {
                     onChange={(e) => setInventoryType(e.target.value)}
                     className="form-check-input"
                   />
-                  <label htmlFor="out" className="radio-label">
+                  <label htmlFor="out" className="form-check-label">
                     OUT
                   </label>
                 </div>
@@ -80,8 +107,8 @@ const Modal = () => {
               <InputType
                 labelText={"Donar Email"}
                 labelFor={"donarEmail"}
-                inputType={"donarEmail"}
-                value={donarEmail}
+                inputType={"email"}
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <InputType
@@ -92,15 +119,19 @@ const Modal = () => {
                 onChange={(e) => setQuantity(e.target.value)}
               />
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleModalSubmit}
+              >
                 Submit
               </button>
             </div>
