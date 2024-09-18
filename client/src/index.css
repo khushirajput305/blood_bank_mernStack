@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+ 
 }
 
 .form-banner img {
@@ -53,11 +54,13 @@
 =================== */
 
 .navbar {
-  background-color: black !important;
+  background-color: 3C5B6F
+  !important;
   color: white !important;
 }
 .nav-link,
 .navbar-brand {
-  background-color: black !important;
+  background-color:3C5B6F
+  !important;
   color: white !important;
 }

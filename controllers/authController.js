@@ -47,11 +47,11 @@ const loginController = async (req, res) => {
       });
     }
     //check role
-    if(user.role !== req.body.role){
+    if (user.role !== req.body.role) {
       return res.status(500).send({
-        success:false,
-        message:'User not match'
-      })
+        success: false,
+        message: "User not match",
+      });
     }
     //compare password
     const comparePassword = await bcrypt.compare(
@@ -65,7 +65,7 @@ const loginController = async (req, res) => {
       });
     }
     const token = JWT.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
+      expiresIn: "1h",
     });
     return res.status(200).send({
       success: true,
@@ -84,9 +84,9 @@ const loginController = async (req, res) => {
 };
 
 //current user
-const currentUserController=async(req,res)=>{
+const currentUserController = async (req, res) => {
   try {
-    const user = await userModel.findOne({_id:req.body.userId})
+    const user = await userModel.findOne({ _id: req.body.userId });
     return res.status(200).send({
       success: true,
       message: "User Fetched Successfully",
@@ -97,9 +97,9 @@ const currentUserController=async(req,res)=>{
     res.status(500).send({
       success: false,
       message: "unable to get current user",
-      error
+      error,
     });
   }
-}
+};
 
-module.exports = { registerController, loginController,currentUserController };
+module.exports = { registerController, loginController, currentUserController };

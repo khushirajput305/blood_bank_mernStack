@@ -14,7 +14,7 @@ const inventorySchema = new mongoose.Schema(
     },
     quantity: {
       type: Number,
-      require: [true, "blood quanity is require"],
+      require: [true, "blood quantity is require"],
     },
     email: {
       type: String,
@@ -43,4 +43,4 @@ const inventorySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Inventory", inventorySchema);
+module.exports = mongoose.model("Inventory",inventorySchema);

@@ -8,7 +8,7 @@ import API from "../services/API";
 import moment from "moment";
 
 const HomePage = () => {
-  const { loading, error, user } = useSelector((state) => state.auth);
+  const { loading, error,user} = useSelector(state=> state.auth);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
@@ -18,19 +18,20 @@ const HomePage = () => {
       const { data } = await API.get("/inventory/get-inventory");
       if (data?.success) {
         setData(data?.inventory);
-        // console.log(data);
+       console.log(data);
       }
     } catch (error) {
       console.log(error);
     }
   };
+  
 
   useEffect(() => {
     getBloodRecords();
   }, []);
   return (
     <Layout>
-    
+      {user?.role==='admin'&& navigate('/admin')}
       {error && <span>{alert(error)}</span>}
       {loading ? (
         <Spinner />
@@ -62,7 +63,7 @@ const HomePage = () => {
                     <td>{record.bloodGroup}</td>
                     <td>{record.inventoryType}</td>
                     <td>{record.quantity} (ML)</td>
-                    <td>{record.donarEmail}</td>
+                    <td>{record.email}</td>
                     <td>
                       {moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}
                     </td>

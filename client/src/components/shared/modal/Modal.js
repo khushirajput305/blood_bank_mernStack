@@ -24,17 +24,17 @@ const Modal = () => {
       });
       if (data?.success) {
         alert("New Record Created");
-        window.location.reload();
+        // window.location.reload();
       }
     } catch (error) {
       if (error.response) {
-          alert(error.response.data.message);
+        alert(error.response.data.message);
       } else {
-          alert("An unexpected error occurred. Please try again.");
+        alert("An unexpected error occurred. Please try again.");
       }
       console.error(error);
-      window.location.reload();
-  }
+      // window.location.reload();
+    }
   };
 
   return (
