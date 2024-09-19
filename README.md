@@ -8,7 +8,6 @@ The **MERN Stack Blood Bank Project** is a web application built using MongoDB, 
 - **Blood Requests**: Users can request specific blood types, facilitating quick access to available blood units.
 - **Inventory Management**: Admins can manage the blood bank inventory by adding, updating, and tracking available blood units.
 - **User Authentication**: Secure login and registration system for both donors and administrators using JWT (JSON Web Token).
-- **Search Functionality**: Users can search for available blood types based on location and availability.
 
 ## Tech Stack
 - **MongoDB**: A NoSQL database for storing user data, blood inventory, and requests.
