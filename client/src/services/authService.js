@@ -28,7 +28,7 @@ export const handleRegister = (
   e.preventDefault();
   try {
     store.dispatch(
-      userRegister({  name,
+      userRegister({name,
         role,
         email,
         password,

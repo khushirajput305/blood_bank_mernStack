@@ -72,7 +72,7 @@ const Form = ({ submitBtn, formTitle, formType }) => {
               id="hospitalRadio"
               value={"hospital"}
               onChange={(e) => setRole(e.target.value)}
-              defaultChecked
+              // defaultChecked
             />
             <label htmlFor="hospitalRadio" className="form-check-label">
               Hospital
@@ -86,7 +86,7 @@ const Form = ({ submitBtn, formTitle, formType }) => {
               id="organisationRadio"
               value={"organisation"}
               onChange={(e) => setRole(e.target.value)}
-              defaultChecked
+              // defaultChecked
             />
             <label htmlFor="organisationRadio" className="form-check-label">
               Organisation
