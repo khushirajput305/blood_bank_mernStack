@@ -14,7 +14,7 @@ const Register = () => {
         <div className="row g-0">
           <div className="col-md-8 form-banner">
             <img
-              src="./assets/images/backgroundImage.jpg"
+              src="/assets/images/backgroundImage.jpg"
               alt="registerImage"
             />
           </div>

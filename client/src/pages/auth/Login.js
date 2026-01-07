@@ -14,7 +14,7 @@ const Login = () => {
       ) : (
         <div className="row g-0">
           <div className="col-md-8 form-banner1">
-            <img src="./assets/images/blood-Donation.jpg" alt="loginImage" />
+            <img src="/assets/images/blood-Donation.jpg" alt="loginImage" />
           </div>
           <div className="col-md-4 form-container">
             <Form
