@@ -14,7 +14,11 @@ const Login = () => {
       ) : (
         <div className="row g-0">
           <div className="col-md-8 form-banner1">
+<<<<<<< HEAD
             <img src="/assets/images/blood-Donation.jpg" alt="loginImage" />
+=======
+            <img src="/assets/images/Blood-Donation.jpg" alt="loginImage" />
+>>>>>>> 682949145f427f3a45c98a3857f6fd678cb1f7bf
           </div>
           <div className="col-md-4 form-container">
             <Form
